@@ -8,7 +8,6 @@
         protected $pre_uri;
         protected $method;
         protected $param;
-        public $parameters;
 
         function __construct()
         {

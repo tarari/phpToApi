@@ -20,7 +20,12 @@
             }
         
         }
-        
+        function update($data){
+            $arrayData=json_decode($data,true);
+            // Validar los datos del usuario
+            $user = User::update($arrayData);
+            
+        }
         function store($data){ 
             $arrayData=json_decode($data,true);
             // Validar los datos del usuario
@@ -54,12 +59,13 @@
             $db=Kernel::resolve('db');
             $res=$db->query("DELETE FROM users where id=:id",[':id'=>$data['id']]);
             if($res){
-                echo json_encode([
+                Response::sendJson([
                     'message'=>"User deleted",
                     'status'=>200
-                ],true);
+                ]);
+                
             }else{
-                abort("Error deleting");
+                Response::sendError("Error deleting");
             }
             
         }
